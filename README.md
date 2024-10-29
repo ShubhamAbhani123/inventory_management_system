@@ -1,6 +1,3 @@
-Here’s the properly formatted Markdown for your `README.md` file:
-
-
 **Inventory Management System (IMS)**
 
 An Inventory Management System built with Django and Django REST Framework (DRF), featuring JWT-based authentication, product management, stock alerts, and filtering capabilities.
