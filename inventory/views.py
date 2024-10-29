@@ -100,27 +100,3 @@ class ProductViewSet(viewsets.ModelViewSet):
         serializer = self.get_serializer(products, many=True)
 
         return Response(serializer.data)
-
-    @action(detail=False, methods=['get'], permission_classes=[permissions.IsAdminUser])
-    def filter_products(self, request):
-        category_id = request.query_params.get('category')
-        supplier_id = request.query_params.get('supplier')
-        min_stock = request.query_params.get('min_stock')
-        max_stock = request.query_params.get('max_stock')
-
-        products = models.Product.objects.all()
-
-        if category_id:
-            products = products.filter(category_id=category_id)
-
-        if supplier_id:
-            products = products.filter(supplier_id=supplier_id)
-
-        if min_stock:
-            products = products.filter(quantity__gte=min_stock)
-        if max_stock:
-            products = products.filter(quantity__lte=max_stock)
-
-        serializer = self.get_serializer(products, many=True)
-
-        return Response(serializer.data)
